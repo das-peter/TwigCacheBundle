@@ -1,7 +1,7 @@
 Twig cache extension Bundle
 ===========================
 
-Symfony 2 Bundle for `asm89/twig-cache-extension`_.
+Symfony 4 Bundle for `twig/cache-extension`_.
 
 API: `emanueleminotto.github.io/TwigCacheBundle`_
 
@@ -71,7 +71,7 @@ Readings:
 -  `Change caching strategy`_
 -  `Profiler`_
 
-.. _asm89/twig-cache-extension: https://github.com/asm89/twig-cache-extension
+.. _twig/twig-cache-extension: https://github.com/twigphp/twig-cache-extension
 .. _emanueleminotto.github.io/TwigCacheBundle: http://emanueleminotto.github.io/TwigCacheBundle/
 .. _Composer: https://getcomposer.org/
 .. _installation chapter: https://getcomposer.org/doc/00-intro.md
