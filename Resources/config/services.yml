@@ -1,0 +1,31 @@
+parameters:
+    twig_cache.adapter.class: Twig\CacheExtension\CacheProvider\DoctrineCacheAdapter
+    twig_cache.extension.class: Twig\CacheExtension\Extension
+    twig_cache.strategy.class: Twig\CacheExtension\CacheStrategy\IndexedChainingCacheStrategy
+    twig_cache.strategy.generational.class: Twig\CacheExtension\CacheStrategy\GenerationalCacheStrategy
+    twig_cache.strategy.lifetime.class: Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy
+    twig_cache.strategy.spl_object_hash_key_generator.class: EmanueleMinotto\TwigCacheBundle\KeyGenerator\SplObjectHashKeyGenerator
+
+services:
+    twig_cache.strategy:
+        class: '%twig_cache.strategy.class%'
+        public: false
+        arguments: [{ gen: '@twig_cache.strategy.generational', time: '@twig_cache.strategy.lifetime' }]
+    twig_cache.strategy.spl_object_hash_key_generator:
+        class: '%twig_cache.strategy.spl_object_hash_key_generator.class%'
+        public: false
+    twig_cache.adapter:
+        class: '%twig_cache.adapter.class%'
+        public: false
+        arguments: ['@twig_cache.service']
+    twig_cache.extension:
+        class: '%twig_cache.extension.class%'
+        tags:
+            - { name: twig.extension }
+        arguments: ['@twig_cache.strategy']
+    twig_cache.strategy.generational:
+        class: '%twig_cache.strategy.generational.class%'
+        arguments: ['@twig_cache.adapter', '@twig_cache.strategy.key_generator']
+    twig_cache.strategy.lifetime:
+        class: '%twig_cache.strategy.lifetime.class%'
+        arguments: ['@twig_cache.adapter']

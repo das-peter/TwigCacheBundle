@@ -34,12 +34,12 @@ class TwigCacheExtension extends Extension
         $container->setAlias('twig_cache.service', $config['service']);
         $container->setAlias('twig_cache.strategy.key_generator', $config['key_generator']);
 
-        $loader = new Loader\XmlFileLoader(
+        $loader = new Loader\YamlFileLoader(
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
         );
 
-        $loader->load('services.xml');
+        $loader->load('services.yml');
 
         $strategy = new Reference($config['strategy']);
 
